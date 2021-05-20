@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import actions from '../../redux/actions'
+import contactSelectors from "../../redux/selectors"
 
 
  function Filter({filterHandler,filter}) {
@@ -14,11 +15,12 @@ import actions from '../../redux/actions'
 }
 
 const mapStateToProps = (state) => ({
-    value: state.contacts.filter 
+    value: contactSelectors.filterValue(state)
 })
 
 const mapDispatchToProps = dispatch => ({
-    filterHandler: e=>dispatch(actions.filter(e.target.value))
+    filterHandler: (e) => dispatch(actions.filterContact(e.target.value))
+    
 })
 
 

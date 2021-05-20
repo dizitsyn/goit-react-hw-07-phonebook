@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import operations from '../../redux/operations';
+import selectors from "../../redux/selectors"
 
 const ContactList = ({contacts, deleteContact}) => {
     return (
@@ -16,17 +17,11 @@ const ContactList = ({contacts, deleteContact}) => {
 
 
  
-  const getFilterContact = (filter, contacts) => {
-    return contacts.filter((contact) =>
-      contact.name
-        .toLocaleLowerCase()
-        .includes(filter.toLocaleLowerCase())
-    );
-  };
 
-const mapStateToProps = ({contacts:{ filter, items }}) => ({
 
-    contacts: getFilterContact (filter, items)
+const mapStateToProps = ( state) => ({
+    
+    contacts: selectors.getFilterContact(state)
 
   
 })  

@@ -1,6 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import loger from "redux-logger";
-import storage from "redux-persist/lib/storage";
 import reducer from "./reducer";
 import {
   persistStore,

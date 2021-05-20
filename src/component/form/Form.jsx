@@ -9,6 +9,8 @@ import operations from '../../redux/operations'
         number: "",
     }
 
+   
+   
     inputHandler = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -16,7 +18,14 @@ import operations from '../../redux/operations'
     submitHandler = (e) => {
     e.preventDefault();
     this.props.addContact(this.state)
-  };
+   };
+   
+   componentDidMount() {
+     this.props.fetchContacts()
+   }
+
+
+
     render() {
         return (
            <form onSubmit={this.submitHandler}>
@@ -47,7 +56,8 @@ import operations from '../../redux/operations'
 }
 
  const mapDispatchToProps = dispatch => ({
-  addContact: contact=>dispatch(operations.addContact(contact))
+   addContact: contact => dispatch(operations.addContact(contact)),
+   fetchContacts: ()=>dispatch(operations.fetchContacts())
 })
 
 export default connect(null,mapDispatchToProps)(Form);

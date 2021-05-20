@@ -3,6 +3,9 @@ import { createReducer } from "@reduxjs/toolkit";
 import actions from "./actions";
 
 const {
+  fetchContactRequest,
+  fetchContactSuccess,
+  fetchContactError,
   addContactRequest,
   addContactSuccess,
   addContactError,
@@ -13,6 +16,8 @@ const {
 } = actions;
 
 const items = createReducer([], {
+  [fetchContactSuccess]: (_, { payload }) => payload,
+
   [addContactSuccess]: (state, { payload }) => [...state, payload],
   [delContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),

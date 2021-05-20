@@ -3,6 +3,17 @@ import actions from "../redux/actions";
 
 axios.defaults.baseURL = "http://localhost:4040";
 
+const fetchContacts = () => async (dispatch) => {
+  dispatch(actions.fetchContactRequest());
+  try {
+    const { data } = await axios.get("/contacts");
+    console.log(data);
+    dispatch(actions.fetchContactSuccess(data));
+  } catch (error) {
+    dispatch(actions.fetchContactError(error));
+  }
+};
+
 const addContact =
   ({ name, number }) =>
   (dispatch) => {
@@ -25,4 +36,4 @@ const delContact = (contactId) => (dispatch) => {
     .catch((error) => dispatch(actions.delContactError(error)));
 };
 
-export default { addContact, delContact };
+export default { addContact, delContact, fetchContacts };
